@@ -1,0 +1,26 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <fieldset>
+      <legend>Add camera:</legend>
+      
+      <div>
+        <label>Name:</label>
+        <input id="name" type="text" formControlName="name">
+      </div>
+
+      <div>
+        <label>Latitude:</label>
+        <input type="text" formControlName="latitude">
+      </div>
+
+      <div>
+        <label>Longitude:</label>
+        <input type="text" formControlName="longitude">
+      </div>
+
+      <div>
+        <button type="submit" [disabled]="!form.valid">Add Camera</button>
+      </div>
+    </fieldset>    
+  </form>
+</div>

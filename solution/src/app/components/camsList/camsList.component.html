@@ -1,0 +1,14 @@
+<div class="container">
+  <h3>City Cams</h3>
+  <ng-container *ngIf="stateCameras$ | async as data">
+    <ul>
+      <li *ngFor="let cam of data.cameras" (click)="selectCamera(cam)">
+        <span>{{ cam.name }}</span>
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  Loading stuff...
+</ng-template>

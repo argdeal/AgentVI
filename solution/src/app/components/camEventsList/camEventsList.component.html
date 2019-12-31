@@ -1,0 +1,19 @@
+<div class="container">
+  <ng-container *ngIf="selectedCam; else noSelectedCam">
+    <h3>Events list from: <span>{{ selectedCam.name }}</span></h3>
+  </ng-container>
+  
+  <ng-container *ngIf="stateEvents$ | async as data">
+    <ul>
+      <li *ngFor="let evt of data.events">
+        <span>{{ evt.time | date:'yyyy-MM-dd hh:mm' }}</span>
+        <span>{{ evt.title }}</span>
+        <span>[{{ evt.description }}]</span>
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<ng-template #noSelectedCam>
+  <div>No camera selected</div>
+</ng-template>

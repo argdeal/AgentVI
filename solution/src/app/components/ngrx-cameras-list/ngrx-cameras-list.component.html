@@ -1,0 +1,43 @@
+<div class="container">
+  <p>
+    <button (click)="addNewCamera()">Add New Camera</button>&nbsp;
+    <button (click)="addNewEvent()">Add New Event</button>&nbsp;
+    <button (click)="resetEvents()">Reset Event</button>&nbsp;
+  </p>
+
+  <div>
+    <h2>List of cameras:</h2>
+    <ng-container *ngIf="stateCameras$ | async as data">
+      <ul>
+        <li *ngFor="let cam of data.cameras">
+          <span>{{cam.name}}</span>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <hr>
+
+  <div>
+    <ng-container *ngIf="selectedCamera; else nocamselected">
+      <h2>List of Events from <span> {{ selectedCamera.name }} </span></h2>
+    </ng-container>
+    <ng-container *ngIf="stateEvents$ | async as data">
+      <!-- <pre>
+        {{ data.events | json }}
+      </pre> -->
+      <ul>
+        <li *ngFor="let evt of data.events">
+          <span>{{ evt.time | date:'yyyy-MM-dd hh:mm' }}</span>
+          <span>{{ evt.title }}</span>
+          <span>[{{ evt.description }}]</span>
+          </li>
+      </ul>
+    </ng-container>    
+  </div>
+
+</div>
+
+<ng-template #nocamselected>
+  <div>no cam selected</div>
+</ng-template>
